@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Table</title>
+    <style>
+        table {
+            width: 100vw; /* Full screen width */
+            height: 100vh; /* Full screen height */
+            border-collapse: collapse;
+        }
+        td {
+            border: 2px solid black;
+            padding: 20px;
+            text-align: center;
+            height: 50vh; /* Half screen height for each cell */
+        }
+        .box1 {
+            background-color: lightblue;
+        }
+        .box2 {
+            background-color: lightgreen;
+        }
+        @media (max-width: 600px) {
+            td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+                height: auto; /* Reset height for small screens */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>boxboxbox</h1>
+
+    <table>
+        <tr> 
+           <td class="box1">first cell</td>
+            <td class="box2">second cell</td>
+        </tr>
+    </table>
+    
+</body>
+</html>
