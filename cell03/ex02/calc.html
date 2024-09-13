@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select, button {
+            margin: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>เครื่องคิดเลข</h1>
+    <form id="calcForm">
+        <input type="text" id="leftOperand" placeholder="Left operand">
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" id="rightOperand" placeholder="Right operand">
+        <input type="submit" value="Try me!">
+    </form>
+
+    <script>
+        document.getElementById('calcForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // ป้องกันการส่งฟอร์ม
+            const leftOperand = document.getElementById('leftOperand').value;
+            const operator = document.getElementById('operator').value;
+            const rightOperand = document.getElementById('rightOperand').value;
+
+            // ตรวจสอบว่าค่าที่ใส่เป็นจำนวนเต็มบวกหรือไม่
+            if (!isPositiveInteger(leftOperand) || !isPositiveInteger(rightOperand)) {
+                alert('Error :(');
+                console.log('Error :(');
+                return;
+            }
+
+            const leftNum = parseInt(leftOperand);
+            const rightNum = parseInt(rightOperand);
+            let result;
+
+            switch (operator) {
+                case '+':
+                    result = leftNum + rightNum;
+                    break;
+                case '-':
+                    result = leftNum - rightNum;
+                    break;
+                case '*':
+                    result = leftNum * rightNum;
+                    break;
+                case '/':
+                    if (rightNum === 0) {
+                        alert("It's over 9000!");
+                        console.log("It's over 9000!");
+                        return;
+                    }
+                    result = leftNum / rightNum;
+                    break;
+                case '%':
+                    if (rightNum === 0) {
+                        alert("It's over 9000!");
+                        console.log("It's over 9000!");
+                        return;
+                    }
+                    result = leftNum % rightNum;
+                    break;
+                default:
+                    result = null;
+            }
+
+            alert('ผลลัพธ์คือ: ' + result);
+            console.log('ผลลัพธ์คือ: ' + result);
+        });
+
+        // การแจ้งเตือนทุก 30 วินาที
+        setInterval(function() {
+            alert('Please, use me...');
+        }, 30000);
+
+        // ฟังก์ชันตรวจสอบว่าค่าเป็นเลขจำนวนเต็มบวกหรือไม่
+        function isPositiveInteger(value) {
+            const num = Number(value);
+            // ตรวจสอบว่าเป็นจำนวนเต็ม และค่ามากกว่าหรือเท่ากับ 0
+            return Number.isInteger(num) && num >= 0;
+        }
+    </script>
+
+</body>
+</html>
