@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: rgb(255, 167, 167);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #balloon {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 50%;
+            transition: width 0.3s, height 0.3s, background-color 0.3s;
+        }
+    </style>
+    <title>Explode the Balloon</title>
+</head>
+<body>
+    <div id="balloon"></div>
+
+    <script>
+        let balloon = document.getElementById('balloon');
+        let colors = ['red', 'green', 'blue'];
+        let currentColorIndex = 0;
+        let size = 200;
+
+        // เมื่อคลิกที่ลูกโป่ง
+        balloon.addEventListener('click', () => {
+            size += 10; // ขยายลูกโป่ง 10px
+            if (size > 420) {
+                size = 200; // ถ้าขนาดเกิน 420px ลูกโป่งจะระเบิดและกลับไปที่ 200px
+            }
+            currentColorIndex = (currentColorIndex + 1) % colors.length;
+            balloon.style.width = size + 'px';
+            balloon.style.height = size + 'px';
+            balloon.style.backgroundColor = colors[currentColorIndex];
+        });
+
+        // เมื่อเมาส์ออกจากลูกโป่ง
+        balloon.addEventListener('mouseleave', () => {
+            size = Math.max(200, size - 5); // ลดขนาดลูกโป่งทีละ 5px
+            currentColorIndex = (currentColorIndex - 1 + colors.length) % colors.length;
+            balloon.style.width = size + 'px';
+            balloon.style.height = size + 'px';
+            balloon.style.backgroundColor = colors[currentColorIndex];
+        });
+    </script>
+</body>
+</html>
